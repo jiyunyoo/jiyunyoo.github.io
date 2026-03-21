@@ -1,138 +1,304 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Jiyun Yoo</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jiyun (Yunny) Yoo 유지윤 柳智允</title>
 
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    background-color: #fff5f7;
-    margin: 0;
-    padding: 40px;
-  }
+  <style>
+    body {
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      background-color: #fff5f7;
+      margin: 0;
+      padding: 40px;
+      color: #222;
+    }
 
-  .container {
-    display: flex;
-    max-width: 1000px;
-    margin: auto;
-    gap: 50px;
-  }
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
 
-  /* LEFT SIDE */
-  .left {
-    width: 35%;
-  }
+    .intro {
+      background: rgba(255, 255, 255, 0.65);
+      border-radius: 18px;
+      padding: 24px 28px;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      font-size: 17px;
+      line-height: 1.7;
+    }
 
-  .left img {
-    width: 100%;
-    border-radius: 12px;
-    margin-bottom: 20px;
-  }
+    .container {
+      display: flex;
+      gap: 50px;
+      align-items: flex-start;
+    }
 
-  .left h1 {
-    margin-bottom: 5px;
-  }
+    .left {
+      width: 34%;
+      background: rgba(255, 255, 255, 0.6);
+      padding: 26px;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      position: sticky;
+      top: 24px;
+    }
 
-  .left p {
-    margin: 5px 0;
-    color: #444;
-  }
+    .left img {
+      width: 100%;
+      border-radius: 16px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
 
-  .links a {
-    display: block;
-    margin-top: 5px;
-    color: #333;
-    text-decoration: none;
-  }
+    .left h1 {
+      font-size: 40px;
+      line-height: 1.1;
+      margin: 0 0 12px 0;
+    }
 
-  /* RIGHT SIDE */
-  .right {
-    width: 65%;
-  }
+    .left .subtitle {
+      font-size: 18px;
+      color: #555;
+      margin-bottom: 18px;
+    }
 
-  .right h2 {
-    margin-bottom: 20px;
-  }
+    .left p {
+      margin: 8px 0;
+      line-height: 1.5;
+    }
 
-  .job {
-    margin-bottom: 25px;
-  }
+    .left h3 {
+      margin-top: 26px;
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
 
-  .job-title {
-    font-weight: bold;
-  }
+    .left a {
+      color: #333;
+      text-decoration: none;
+    }
 
-  .job-date {
-    font-size: 14px;
-    color: gray;
-  }
+    .left a:hover {
+      text-decoration: underline;
+    }
 
-</style>
+    .right {
+      width: 66%;
+    }
+
+    .section {
+      background: rgba(255, 255, 255, 0.6);
+      padding: 26px;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      margin-bottom: 24px;
+    }
+
+    .section h2 {
+      margin-top: 0;
+      margin-bottom: 20px;
+      font-size: 32px;
+    }
+
+    .job {
+      margin-bottom: 28px;
+      padding-bottom: 22px;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+
+    .job:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .job-title {
+      font-weight: 700;
+      font-size: 21px;
+      margin-bottom: 4px;
+    }
+
+    .job-date {
+      font-size: 14px;
+      color: #777;
+      margin-bottom: 10px;
+    }
+
+    .job ul {
+      margin: 0;
+      padding-left: 20px;
+      line-height: 1.7;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .chip {
+      background: #ffffff;
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-size: 15px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    }
+
+    @media (max-width: 900px) {
+      .container {
+        flex-direction: column;
+      }
+
+      .left, .right {
+        width: 100%;
+      }
+
+      .left {
+        position: static;
+      }
+    }
+  </style>
 </head>
-
 <body>
+  <div class="page">
 
-<div class="container">
-
-  <!-- LEFT SIDE -->
-  <div class="left">
-
-    <img src="profile.jpg">
-
-    <h1>Jiyun Yoo</h1>
-    <p>Age: 26</p>
-    <p>KAIST Master's Student</p>
-    <p>Consultant at Kim & Chang</p>
-
-    <h3>Contact</h3>
-    <p>Email: yunnyyoo@gmail.com</p>
-
-    <div class="links">
-      <a href="https://www.instagram.com/yunnyjyoo/" target="_blank">Instagram</a>
-      <a href="https://blog.naver.com/yummyeatz" target="_blank">Naver Blog</a>
+    <div class="intro">
+      Hi! I’m Jiyun — a cybersecurity consultant, business problem-solver, and lifelong team player who somehow enjoys both security frameworks and a good tennis match. I love turning complex ideas into structured, actionable solutions, whether that means advising organizations, learning new domains quickly, or planning my next meal while booking my next trip. I also lived in Beijing, China for most of my life (17 years!) and attended an international school so I'm more comfortable with English. 
     </div>
 
+    <div class="container">
+
+      <div class="left">
+        <img src="profile.jpg" alt="Jiyun Yoo profile photo">
+
+        <h1>Jiyun Yoo</h1>
+        <div class="subtitle">Cybersecurity Consultant at Kim & Chang</div>
+
+        <p><strong>Age:</strong> 26 (1999.08.07)</p>
+        <p><strong>Education:</strong><br>
+          KAIST, Master’s in Information Management<br>
+          KAIST High Honor Award (학업우수상)<br>
+          Seoul National University, Bachelor’s in Business Administration
+        </p>
+
+        <h3>Contact</h3>
+        <p><strong>Email:</strong> <a href="mailto:yunnyyoo@gmail.com">yunnyyoo@gmail.com</a></p>
+        <p><strong>Instagram:</strong> <a href="https://www.instagram.com/yunnyjyoo/" target="_blank">yunnyjyoo</a></p>
+        <p><strong>Naver Blog:</strong> <a href="https://blog.naver.com/yummyeatz" target="_blank">yummyeatz</a></p>
+      </div>
+
+      <div class="right">
+
+        <div class="section">
+          <h2>Experiences</h2>
+
+          <div class="job">
+            <div class="job-title">Kim & Chang — Consultant</div>
+            <div class="job-date">Feb 2025 – Present</div>
+            <ul>
+              <li>Designed and assessed security and compliance frameworks, including AI security guidelines, OT security governance, and certification readiness programs.</li>
+              <li>Led stakeholder communication through interim presentations, evidence collection, mock audits, and real-time coordination across certification projects.</li>
+            </ul>
+          </div>
+
+          <div class="job">
+            <div class="job-title">EY Consulting — Senior Consultant</div>
+            <div class="job-date">Jul 2021 – Jan 2025</div>
+            <ul>
+              <li>Worked on CRM, customer experience, and business strategy projects for major clients including LG Electronics, Samsung Electronics, and Hyundai Motor Company.</li>
+              <li>Built governance models, designed dashboards and surveys, and developed strategic recommendations grounded in business analysis and market research.</li>
+            </ul>
+          </div>
+
+          <div class="job">
+            <div class="job-title">Hanwha Life LIFEPLUS — Brand Ambassador</div>
+            <div class="job-date">Aug 2020 – Feb 2021</div>
+            <ul>
+              <li>Planned and executed video content initiatives from concept to filming and editing to promote the brand’s healthy lifestyle message.</li>
+              <li>Supported brand visibility and engagement through content promotion and channel-based marketing activities.</li>
+            </ul>
+          </div>
+
+          <div class="job">
+            <div class="job-title">Shin & Kim Law Firm — Research Intern</div>
+            <div class="job-date">Jul 2019 – Aug 2019</div>
+            <ul>
+              <li>Conducted in-depth research on China’s property market, including geopolitical and international news analysis.</li>
+              <li>Produced a structured report on legal and regulatory procedures for foreign investors entering the Chinese real estate market.</li>
+            </ul>
+          </div>
+
+          <div class="job">
+            <div class="job-title">SM Entertainment — China Business Project Team Intern</div>
+            <div class="job-date">Jan 2018 – Feb 2018</div>
+            <ul>
+              <li>Developed presentation materials and research insights on the Chinese entertainment industry and its implications for the Korean market.</li>
+              <li>Supported the “Baidu x SM” collaboration by translating official proposal slides from Chinese to Korean.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>Extracurriculars</h2>
+
+          <div class="job">
+            <div class="job-title">KAIST IMMS Tennis Club — President</div>
+            <div class="job-date">Sep 2024 – Present</div>
+            <ul>
+              <li>Recruited members and organized practices and doubles matches for the club.</li>
+              <li>Helped build an active sports community within the KAIST program.</li>
+            </ul>
+          </div>
+
+          <div class="job">
+            <div class="job-title">EYFC Football Club — Member</div>
+            <div class="job-date">Aug 2023 – Present</div>
+            <ul>
+              <li>Participated in club matches and helped organize games with other football clubs.</li>
+              <li>Encouraged coworkers to join and grow the team community.</li>
+            </ul>
+          </div>
+
+          <div class="job">
+            <div class="job-title">EY Pang Tennis Club — Member</div>
+            <div class="job-date">Sep 2022 – Present</div>
+            <ul>
+              <li>Participated in company tennis matches and tournaments.</li>
+              <li>Helped recruit coworkers and support club activities.</li>
+            </ul>
+          </div>
+
+          <div class="job">
+            <div class="job-title">Seoul National University Women’s Basketball Team — Captain</div>
+            <div class="job-date">Jan 2019 – Dec 2019</div>
+            <ul>
+              <li>Led team practices and coordinated training for 30 members.</li>
+              <li>Helped lead the team to a historic 2nd-place finish among 12 university teams in Korea.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>Interests</h2>
+          <div class="chips">
+            <div class="chip">🏀 Basketball</div>
+            <div class="chip">⚽ Football (Soccer)</div>
+            <div class="chip">🏐 Volleyball</div>
+            <div class="chip">🎾 Tennis</div>
+            <div class="chip">🍜 Food</div>
+            <div class="chip">🏊 Swimming</div>
+            <div class="chip">🤿 Diving</div>
+            <div class="chip">⛳ Golf</div>
+            <div class="chip">✈️ Traveling</div>
+            <div class="chip">🍳 Cooking</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
   </div>
-
-  <!-- RIGHT SIDE -->
-  <div class="right">
-
-    <h2>Work Experience</h2>
-
-    <div class="job">
-      <div class="job-title">Kim & Chang — Consultant</div>
-      <div class="job-date">2025 – Present</div>
-    </div>
-
-    <div class="job">
-      <div class="job-title">EY Consulting — Senior Consultant</div>
-      <div class="job-date">2021 – 2025</div>
-    </div>
-
-    <div class="job">
-      <div class="job-title">Hanwha Life — Brand Ambassador</div>
-      <div class="job-date">2020 – 2021</div>
-    </div>
-
-    <div class="job">
-      <div class="job-title">Shin & Kim Law Firm — Intern</div>
-      <div class="job-date">2019</div>
-    </div>
-
-    <div class="job">
-      <div class="job-title">CJ ENM — Instructor</div>
-      <div class="job-date">2018 – 2019</div>
-    </div>
-
-    <div class="job">
-      <div class="job-title">SM Entertainment — Intern</div>
-      <div class="job-date">2018</div>
-    </div>
-
-  </div>
-
-</div>
-
 </body>
 </html>
