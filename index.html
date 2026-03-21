@@ -1,68 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Jiyun Yoo</title>
+<meta charset="UTF-8">
+<title>Jiyun Yoo</title>
 
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #fff5f7; /* pastel pink */
-      margin: 0;
-      padding: 40px;
-      text-align: center;
-    }
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #fff5f7;
+    margin: 0;
+    padding: 40px;
+  }
 
-    .container {
-      max-width: 800px;
-      margin: auto;
-    }
+  .container {
+    display: flex;
+    max-width: 1000px;
+    margin: auto;
+    gap: 50px;
+  }
 
-    img {
-      width: 200px;
-      border-radius: 10px;
-      margin-bottom: 20px;
-    }
+  /* LEFT SIDE */
+  .left {
+    width: 35%;
+  }
 
-    h1 {
-      margin-bottom: 10px;
-    }
+  .left img {
+    width: 100%;
+    border-radius: 12px;
+    margin-bottom: 20px;
+  }
 
-    h2 {
-      margin-top: 40px;
-    }
+  .left h1 {
+    margin-bottom: 5px;
+  }
 
-    .links a {
-      margin: 0 10px;
-      text-decoration: none;
-      color: #333;
-    }
-  </style>
+  .left p {
+    margin: 5px 0;
+    color: #444;
+  }
+
+  .links a {
+    display: block;
+    margin-top: 5px;
+    color: #333;
+    text-decoration: none;
+  }
+
+  /* RIGHT SIDE */
+  .right {
+    width: 65%;
+  }
+
+  .right h2 {
+    margin-bottom: 20px;
+  }
+
+  .job {
+    margin-bottom: 25px;
+  }
+
+  .job-title {
+    font-weight: bold;
+  }
+
+  .job-date {
+    font-size: 14px;
+    color: gray;
+  }
+
+</style>
 </head>
 
 <body>
 
-  <div class="container">
+<div class="container">
 
-    <!-- Profile Picture -->
-    <img src="profile.jpg" alt="Jiyun">
+  <!-- LEFT SIDE -->
+  <div class="left">
 
-    <h1>Hi, I’m Jiyun Yoo</h1>
-    <p>Consultant | KAIST Master's Student</p>
+    <img src="profile.jpg">
 
-    <!-- Work Experience -->
-    <h2>Work Experience</h2>
-    <p>
-      Kim & Chang (Consultant)<br>
-      EY Consulting (Senior Consultant)<br>
-      Hanwha Life (Brand Ambassador)<br>
-      Shin & Kim Law Firm (Intern)<br>
-      CJ ENM (Instructor)<br>
-      SM Entertainment (Intern)
-    </p>
+    <h1>Jiyun Yoo</h1>
+    <p>Age: 26</p>
+    <p>KAIST Master's Student</p>
+    <p>Consultant at Kim & Chang</p>
 
-    <!-- Contact -->
-    <h2>Contact</h2>
+    <h3>Contact</h3>
     <p>Email: yunnyyoo@gmail.com</p>
 
     <div class="links">
@@ -71,6 +94,45 @@
     </div>
 
   </div>
+
+  <!-- RIGHT SIDE -->
+  <div class="right">
+
+    <h2>Work Experience</h2>
+
+    <div class="job">
+      <div class="job-title">Kim & Chang — Consultant</div>
+      <div class="job-date">2025 – Present</div>
+    </div>
+
+    <div class="job">
+      <div class="job-title">EY Consulting — Senior Consultant</div>
+      <div class="job-date">2021 – 2025</div>
+    </div>
+
+    <div class="job">
+      <div class="job-title">Hanwha Life — Brand Ambassador</div>
+      <div class="job-date">2020 – 2021</div>
+    </div>
+
+    <div class="job">
+      <div class="job-title">Shin & Kim Law Firm — Intern</div>
+      <div class="job-date">2019</div>
+    </div>
+
+    <div class="job">
+      <div class="job-title">CJ ENM — Instructor</div>
+      <div class="job-date">2018 – 2019</div>
+    </div>
+
+    <div class="job">
+      <div class="job-title">SM Entertainment — Intern</div>
+      <div class="job-date">2018</div>
+    </div>
+
+  </div>
+
+</div>
 
 </body>
 </html>
