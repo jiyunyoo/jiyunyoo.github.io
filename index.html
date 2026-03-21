@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Jiyun (Yunny) Yoo 유지윤 柳智允</title>
@@ -12,6 +13,22 @@
       margin: 0;
       padding: 40px;
       color: #222;
+      .contact-icons {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.contact-icons a {
+  font-size: 22px;
+  color: #333;
+  transition: all 0.2s ease;
+}
+
+.contact-icons a:hover {
+  color: #ff8fa3; /* soft pink hover */
+  transform: scale(1.2);
+}
     }
 
     .page {
@@ -185,9 +202,20 @@
         </p>
 
         <h3>Contact</h3>
-        <p><strong>Email:</strong> <a href="mailto:yunnyyoo@gmail.com">yunnyyoo@gmail.com</a></p>
-        <p><strong>Instagram:</strong> <a href="https://www.instagram.com/yunnyjyoo/" target="_blank">yunnyjyoo</a></p>
-        <p><strong>Naver Blog:</strong> <a href="https://blog.naver.com/yummyeatz" target="_blank">yummyeatz</a></p>
+
+<div class="contact-icons">
+  <a href="mailto:yunnyyoo@gmail.com" target="_blank">
+    <i class="fas fa-envelope"></i>
+  </a>
+
+  <a href="https://www.instagram.com/yunnyjyoo/" target="_blank">
+    <i class="fab fa-instagram"></i>
+  </a>
+
+  <a href="https://blog.naver.com/yummyeatz" target="_blank">
+    <i class="fas fa-blog"></i>
+  </a>
+</div>
       </div>
 
       <div class="right">
