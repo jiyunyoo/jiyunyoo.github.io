@@ -1,322 +1,593 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Jiyun (Yunny) Yoo 유지윤 柳智允</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
+    :root {
+      --cream: #faf7f2;
+      --blush: #f2d5d5;
+      --rose: #c9858a;
+      --deep-rose: #8b4a50;
+      --ink: #1a1410;
+      --muted: #7a6f68;
+      --card-bg: rgba(255, 255, 255, 0.72);
+      --shadow: 0 8px 40px rgba(60, 30, 20, 0.08);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
     body {
-      font-family: "Helvetica Neue", Arial, sans-serif;
-      background-color: #fff5f7;
-      margin: 0;
-      padding: 40px;
-      color: #222;
-      .contact-icons {
-  display: flex;
-  gap: 15px;
-  margin-top: 10px;
-}
-
-.contact-icons a {
-  font-size: 22px;
-  color: #333;
-  transition: all 0.2s ease;
-}
-
-.contact-icons a:hover {
-  color: #ff8fa3; /* soft pink hover */
-  transform: scale(1.2);
-}
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--cream);
+      color: var(--ink);
+      min-height: 100vh;
+      overflow-x: hidden;
     }
 
+    /* Noise grain overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.032'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    /* Ambient blobs */
+    .blob {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(90px);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .blob-1 {
+      width: 540px; height: 540px;
+      background: radial-gradient(circle, rgba(242,213,213,0.52), transparent 70%);
+      top: -140px; right: -120px;
+      animation: floatA 15s ease-in-out infinite;
+    }
+    .blob-2 {
+      width: 420px; height: 420px;
+      background: radial-gradient(circle, rgba(201,133,138,0.18), transparent 70%);
+      bottom: 80px; left: -100px;
+      animation: floatB 19s ease-in-out infinite;
+    }
+    .blob-3 {
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(242,213,213,0.3), transparent 70%);
+      top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      animation: floatA 22s ease-in-out infinite reverse;
+    }
+    @keyframes floatA { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-28px,38px)} }
+    @keyframes floatB { 0%,100%{transform:translate(0,0)} 50%{transform:translate(36px,-26px)} }
+
+    /* Page wrapper */
     .page {
-      max-width: 1100px;
+      position: relative;
+      z-index: 1;
+      max-width: 1160px;
       margin: 0 auto;
+      padding: 52px 36px 90px;
     }
 
-    .intro {
-      background: rgba(255, 255, 255, 0.65);
-      border-radius: 18px;
-      padding: 24px 28px;
-      margin-bottom: 30px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-      font-size: 17px;
-      line-height: 1.7;
-    }
-
-    .container {
+    /* ── LAYOUT ── */
+    .layout {
       display: flex;
-      gap: 50px;
+      gap: 32px;
       align-items: flex-start;
     }
 
-    .left {
-      width: 34%;
-      background: rgba(255, 255, 255, 0.6);
-      padding: 26px;
-      border-radius: 20px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    /* ── LEFT SIDEBAR ── */
+    .sidebar {
+      width: 300px;
+      flex-shrink: 0;
       position: sticky;
-      top: 24px;
+      top: 32px;
+      animation: fadeUp 0.8s ease both;
     }
 
-    .left img {
+    .sidebar-card {
+      background: var(--card-bg);
+      border-radius: 24px;
+      padding: 28px 24px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255,255,255,0.75);
+    }
+
+    .photo-wrap {
+      position: relative;
+      margin-bottom: 22px;
+    }
+    .photo-wrap::before {
+      content: '';
+      position: absolute;
+      inset: -8px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, var(--blush) 0%, transparent 65%);
+      z-index: 0;
+    }
+    .photo-wrap img {
+      position: relative;
+      z-index: 1;
       width: 100%;
       border-radius: 16px;
-      margin-bottom: 20px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      display: block;
+      box-shadow: 0 10px 36px rgba(60,30,20,0.14);
     }
 
-    .left h1 {
-      font-size: 40px;
-      line-height: 1.1;
-      margin: 0 0 12px 0;
+    .sidebar-eyebrow {
+      font-size: 11.5px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--rose);
+      font-weight: 500;
+      margin-bottom: 8px;
     }
 
-    .left .subtitle {
-      font-size: 18px;
-      color: #555;
-      margin-bottom: 18px;
+    .sidebar-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 38px;
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      margin-bottom: 6px;
+    }
+    .sidebar-name em {
+      font-style: italic;
+      color: var(--rose);
     }
 
-    .left p {
-      margin: 8px 0;
+    .sidebar-role {
+      font-size: 13.5px;
+      color: var(--muted);
       line-height: 1.5;
-    }
-
-    .left h3 {
-      margin-top: 26px;
-      margin-bottom: 10px;
-      font-size: 20px;
-    }
-
-    .left a {
-      color: #333;
-      text-decoration: none;
-    }
-
-    .left a:hover {
-      text-decoration: underline;
-    }
-
-    .right {
-      width: 66%;
-    }
-
-    .section {
-      background: rgba(255, 255, 255, 0.6);
-      padding: 26px;
-      border-radius: 20px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-      margin-bottom: 24px;
-    }
-
-    .section h2 {
-      margin-top: 0;
       margin-bottom: 20px;
-      font-size: 32px;
     }
 
+    /* Meta pills */
+    .meta-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 22px;
+    }
+    .meta-pill {
+      font-size: 13px;
+      padding: 7px 13px;
+      border-radius: 10px;
+      background: rgba(242,213,213,0.22);
+      border: 1px solid rgba(201,133,138,0.18);
+      color: var(--muted);
+      line-height: 1.4;
+    }
+    .meta-pill strong { color: var(--ink); }
+
+    /* Divider */
+    .sidebar-divider {
+      height: 1px;
+      background: linear-gradient(to right, rgba(201,133,138,0.3), transparent);
+      margin: 18px 0;
+    }
+
+    /* Education in sidebar */
+    .sidebar-section-label {
+      font-size: 11.5px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--rose);
+      font-weight: 500;
+      margin-bottom: 14px;
+    }
+    .edu-item {
+      display: flex;
+      gap: 11px;
+      margin-bottom: 14px;
+      align-items: flex-start;
+    }
+    .edu-item:last-child { margin-bottom: 0; }
+    .edu-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--rose);
+      margin-top: 6px;
+      flex-shrink: 0;
+    }
+    .edu-name { font-size: 13.5px; font-weight: 600; margin-bottom: 2px; }
+    .edu-degree { font-size: 12.5px; color: var(--muted); line-height: 1.4; }
+    .edu-award {
+      display: inline-block;
+      margin-top: 4px;
+      font-size: 11.5px;
+      color: var(--deep-rose);
+      background: rgba(242,213,213,0.45);
+      padding: 2px 9px;
+      border-radius: 999px;
+    }
+
+    /* Contact icons */
+    .contact-icons {
+      display: flex;
+      gap: 10px;
+    }
+    .contact-icons a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.9);
+      box-shadow: 0 2px 12px rgba(60,30,20,0.09);
+      color: var(--muted);
+      font-size: 15px;
+      text-decoration: none;
+      transition: all 0.25s;
+    }
+    .contact-icons a:hover {
+      background: var(--rose);
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(201,133,138,0.38);
+    }
+
+    /* ── RIGHT MAIN ── */
+    .main {
+      flex: 1;
+      min-width: 0;
+    }
+
+    /* Intro banner */
+    .intro-banner {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 22px 26px 22px 36px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.72);
+      font-size: 15.5px;
+      line-height: 1.8;
+      color: #3d322c;
+      animation: fadeUp 0.75s ease both;
+      position: relative;
+      overflow: hidden;
+    }
+    .intro-banner::before {
+      content: '\201C';
+      position: absolute;
+      top: -14px; left: 10px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 110px;
+      color: rgba(201,133,138,0.13);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    /* Section cards */
+    .card {
+      background: var(--card-bg);
+      border-radius: 22px;
+      padding: 28px 30px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.7);
+      margin-bottom: 24px;
+      animation: fadeUp 0.85s ease both;
+    }
+    .card:nth-child(2) { animation-delay: 0.07s; }
+    .card:nth-child(3) { animation-delay: 0.13s; }
+    .card:nth-child(4) { animation-delay: 0.19s; }
+
+    .card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 30px;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .card-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, rgba(201,133,138,0.35), transparent);
+    }
+
+    /* Timeline jobs */
     .job {
-      margin-bottom: 28px;
-      padding-bottom: 22px;
-      border-bottom: 1px solid rgba(0,0,0,0.08);
+      position: relative;
+      padding-left: 22px;
+      margin-bottom: 26px;
+      padding-bottom: 26px;
     }
-
-    .job:last-child {
-      border-bottom: none;
-      margin-bottom: 0;
-      padding-bottom: 0;
+    .job::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 8px; bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--rose), transparent);
     }
+    .job::after {
+      content: '';
+      position: absolute;
+      left: -4px; top: 8px;
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      background: var(--rose);
+      box-shadow: 0 0 0 3px rgba(201,133,138,0.2);
+    }
+    .job:last-child { margin-bottom: 0; padding-bottom: 0; }
+    .job:last-child::before { display: none; }
 
+    .job-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+    }
     .job-title {
-      font-weight: 700;
-      font-size: 21px;
-      margin-bottom: 4px;
+      font-weight: 600;
+      font-size: 15px;
+      line-height: 1.35;
     }
-
+    .job-company { color: var(--rose); font-weight: 400; }
     .job-date {
-      font-size: 14px;
-      color: #777;
-      margin-bottom: 10px;
+      font-size: 12px;
+      color: var(--muted);
+      white-space: nowrap;
+      background: rgba(242,213,213,0.35);
+      padding: 3px 10px;
+      border-radius: 999px;
+      flex-shrink: 0;
     }
-
     .job ul {
-      margin: 0;
-      padding-left: 20px;
-      line-height: 1.7;
+      padding-left: 16px;
+      font-size: 13.5px;
+      line-height: 1.78;
+      color: #4a3f38;
     }
+    .job ul li { margin-bottom: 2px; }
 
+    /* Interests chips */
     .chips {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-top: 10px;
     }
-
     .chip {
-      background: #ffffff;
+      background: linear-gradient(135deg, #fff8f8, #fff2ef);
+      border: 1px solid rgba(201,133,138,0.18);
       border-radius: 999px;
-      padding: 10px 14px;
-      font-size: 15px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+      padding: 8px 16px;
+      font-size: 14px;
+      box-shadow: 0 2px 8px rgba(60,30,20,0.05);
+      transition: all 0.22s;
+      cursor: default;
+    }
+    .chip:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(201,133,138,0.2);
+      border-color: rgba(201,133,138,0.42);
     }
 
-    @media (max-width: 900px) {
-      .container {
-        flex-direction: column;
-      }
+    /* Fade up */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
 
-      .left, .right {
-        width: 100%;
-      }
-
-      .left {
-        position: static;
-      }
+    /* Responsive */
+    @media (max-width: 860px) {
+      .layout { flex-direction: column; }
+      .sidebar { width: 100%; position: static; }
+      .page { padding: 28px 18px 60px; }
+      .sidebar-name { font-size: 32px; }
     }
   </style>
 </head>
 <body>
-  <div class="page">
 
-    <div class="intro">
-      Hi! I’m Jiyun — a cybersecurity consultant, business problem-solver, and lifelong team player who somehow enjoys both security frameworks and a good tennis match. I love turning complex ideas into structured, actionable solutions, whether that means advising organizations, learning new domains quickly, or planning my next meal while booking my next trip. I also lived in Beijing, China for most of my life (17 years!) and attended an international school so I'm more comfortable with English. 
-    </div>
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+<div class="blob blob-3"></div>
 
-    <div class="container">
+<div class="page">
+  <div class="layout">
 
-      <div class="left">
-        <img src="profile.jpg" alt="Jiyun Yoo profile photo">
+    <!-- ── SIDEBAR ── -->
+    <aside class="sidebar">
+      <div class="sidebar-card">
 
-        <h1>Jiyun Yoo</h1>
-        <div class="subtitle">Cybersecurity Consultant at Kim & Chang</div>
+        <div class="photo-wrap">
+          <img src="profile.jpg" alt="Jiyun Yoo profile photo">
+        </div>
 
-        <p><strong>Age:</strong> 26 (1999.08.07)</p>
-        <p><strong>Education:</strong><br>
-          KAIST, Master’s in Information Management<br>
-          KAIST High Honor Award (학업우수상)<br>
-          Seoul National University, Bachelor’s in Business Administration
-        </p>
+        <div class="sidebar-eyebrow">유지윤 · 柳智允</div>
+        <h1 class="sidebar-name">Jiyun <em>Yunny</em> Yoo</h1>
+        <div class="sidebar-role">Cybersecurity Consultant<br>Kim &amp; Chang · Seoul</div>
 
-        <h3>Contact</h3>
+        <div class="meta-stack">
+          <div class="meta-pill">🎂 <strong>Born</strong> Aug 7, 1999</div>
+          <div class="meta-pill">📍 <strong>Based in</strong> Seoul, Korea</div>
+          <div class="meta-pill">🌏 <strong>Raised in</strong> Beijing (17 yrs)</div>
+        </div>
 
-<div class="contact-icons">
-  <a href="mailto:yunnyyoo@gmail.com" target="_blank">
-    <i class="fas fa-envelope"></i>
-  </a>
+        <div class="sidebar-divider"></div>
 
-  <a href="https://www.instagram.com/yunnyjyoo/" target="_blank">
-    <i class="fab fa-instagram"></i>
-  </a>
+        <div class="sidebar-section-label">Education</div>
 
-  <a href="https://blog.naver.com/yummyeatz" target="_blank">
-    <i class="fas fa-blog"></i>
-  </a>
-  
-</div>
+        <div class="edu-item">
+          <div class="edu-dot"></div>
+          <div>
+            <div class="edu-name">KAIST</div>
+            <div class="edu-degree">M.S. Information Management</div>
+            <span class="edu-award">🏅 High Honor Award (학업우수상)</span>
+          </div>
+        </div>
+
+        <div class="edu-item">
+          <div class="edu-dot"></div>
+          <div>
+            <div class="edu-name">Seoul National University</div>
+            <div class="edu-degree">B.S. Business Administration</div>
+          </div>
+        </div>
+
+        <div class="sidebar-divider"></div>
+
+        <div class="sidebar-section-label">Contact</div>
+        <div class="contact-icons">
+          <a href="mailto:yunnyyoo@gmail.com" title="Email">
+            <i class="fas fa-envelope"></i>
+          </a>
+          <a href="https://www.instagram.com/yunnyjyoo/" title="Instagram" target="_blank">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://blog.naver.com/yummyeatz" title="Food Blog" target="_blank">
+            <i class="fas fa-blog"></i>
+          </a>
+        </div>
+
+      </div>
+    </aside>
+
+    <!-- ── MAIN ── -->
+    <main class="main">
+
+      <!-- Intro -->
+      <div class="intro-banner">
+        Hi! I'm Jiyun — a cybersecurity consultant, business problem-solver, and lifelong team player who somehow enjoys both security frameworks and a good tennis match. I love turning complex ideas into structured, actionable solutions, whether that means advising organizations, learning new domains quickly, or planning my next meal while booking my next trip. I also lived in Beijing, China for most of my life (17 years!) and attended an international school so I'm more comfortable with English.
       </div>
 
-      <div class="right">
+      <!-- Experience -->
+      <div class="card">
+        <div class="card-title">Experience</div>
 
-        <div class="section">
-          <h2>Experiences</h2>
-
-          <div class="job">
-            <div class="job-title">Kim & Chang — Consultant</div>
+        <div class="job">
+          <div class="job-head">
+            <div class="job-title"><span class="job-company">Kim &amp; Chang</span> — Consultant</div>
             <div class="job-date">Feb 2025 – Present</div>
-            <ul>
-              <li>Designed and assessed security and compliance frameworks, including AI security guidelines, OT security governance, and certification readiness programs.</li>
-              <li>Led stakeholder communication through interim presentations, evidence collection, mock audits, and real-time coordination across certification projects.</li>
-            </ul>
           </div>
+          <ul>
+            <li>Designed and assessed security and compliance frameworks, including AI security guidelines, OT security governance, and certification readiness programs.</li>
+            <li>Led stakeholder communication through interim presentations, evidence collection, mock audits, and real-time coordination across certification projects.</li>
+          </ul>
+        </div>
 
-          <div class="job">
-            <div class="job-title">EY Consulting — Senior Consultant</div>
+        <div class="job">
+          <div class="job-head">
+            <div class="job-title"><span class="job-company">EY Consulting</span> — Senior Consultant</div>
             <div class="job-date">Jul 2021 – Jan 2025</div>
-            <ul>
-              <li>Worked on CRM, customer experience, and business strategy projects for major clients including LG Electronics, Samsung Electronics, and Hyundai Motor Company.</li>
-              <li>Built governance models, designed dashboards and surveys, and developed strategic recommendations grounded in business analysis and market research.</li>
-            </ul>
           </div>
+          <ul>
+            <li>Worked on CRM, customer experience, and business strategy projects for major clients including LG Electronics, Samsung Electronics, and Hyundai Motor Company.</li>
+            <li>Built governance models, designed dashboards and surveys, and developed strategic recommendations grounded in business analysis and market research.</li>
+          </ul>
+        </div>
 
-          <div class="job">
-            <div class="job-title">Hanwha Life LIFEPLUS — Brand Ambassador</div>
+        <div class="job">
+          <div class="job-head">
+            <div class="job-title"><span class="job-company">Hanwha Life LIFEPLUS</span> — Brand Ambassador</div>
             <div class="job-date">Aug 2020 – Feb 2021</div>
-            <ul>
-              <li>Planned and executed video content initiatives from concept to filming and editing to promote the brand’s healthy lifestyle message.</li>
-              <li>Supported brand visibility and engagement through content promotion and channel-based marketing activities.</li>
-            </ul>
           </div>
+          <ul>
+            <li>Planned and executed video content initiatives from concept to filming and editing to promote the brand's healthy lifestyle message.</li>
+            <li>Supported brand visibility and engagement through content promotion and channel-based marketing activities.</li>
+          </ul>
+        </div>
 
-          <div class="job">
-            <div class="job-title">Shin & Kim Law Firm — Research Intern</div>
+        <div class="job">
+          <div class="job-head">
+            <div class="job-title"><span class="job-company">Shin &amp; Kim Law Firm</span> — Research Intern</div>
             <div class="job-date">Jul 2019 – Aug 2019</div>
-            <ul>
-              <li>Conducted in-depth research on China’s property market, including geopolitical and international news analysis.</li>
-              <li>Produced a structured report on legal and regulatory procedures for foreign investors entering the Chinese real estate market.</li>
-            </ul>
           </div>
+          <ul>
+            <li>Conducted in-depth research on China's property market, including geopolitical and international news analysis.</li>
+            <li>Produced a structured report on legal and regulatory procedures for foreign investors entering the Chinese real estate market.</li>
+          </ul>
+        </div>
 
-          <div class="job">
-            <div class="job-title">SM Entertainment — China Business Project Team Intern</div>
+        <div class="job">
+          <div class="job-head">
+            <div class="job-title"><span class="job-company">SM Entertainment</span> — China Business Project Team Intern</div>
             <div class="job-date">Jan 2018 – Feb 2018</div>
-            <ul>
-              <li>Developed presentation materials and research insights on the Chinese entertainment industry and its implications for the Korean market.</li>
-              <li>Supported the “Baidu x SM” collaboration by translating official proposal slides from Chinese to Korean.</li>
-            </ul>
           </div>
+          <ul>
+            <li>Developed presentation materials and research insights on the Chinese entertainment industry and its implications for the Korean market.</li>
+            <li>Supported the "Baidu × SM" collaboration by translating official proposal slides from Chinese to Korean.</li>
+          </ul>
         </div>
-
-        <div class="section">
-          <h2>Extracurriculars</h2>
-
-          <div class="job">
-            <div class="job-title">KAIST IMMS Tennis Club </div>
-            <div class="job-date">Sep 2024 – Present</div>
-            </ul>
-          </div>
-
-          <div class="job">
-            <div class="job-title">EYFC Football Club</div>
-            <div class="job-date">Aug 2023 – Present</div>
-            </ul>
-          </div>
-
-          <div class="job">
-            <div class="job-title">EY Pang Tennis Club</div>
-            <div class="job-date">Sep 2022 – Present</div>
-            <ul>
-          </div>
-
-          <div class="job">
-            <div class="job-title">Seoul National University Women’s Basketball Team — Captain</div>
-            <div class="job-date">Jan 2019 – Dec 2019</div>
-            <ul>
-          </div>
-        </div>
-
-        <div class="section">
-          <h2>Interests</h2>
-          <div class="chips">
-            <div class="chip">🏀 Basketball</div>
-            <div class="chip">⚽ Football (Soccer)</div>
-            <div class="chip">🏐 Volleyball</div>
-            <div class="chip">🎾 Tennis</div>
-            <div class="chip">🍜 Food</div>
-            <div class="chip">🏊 Swimming</div>
-            <div class="chip">🤿 Diving</div>
-            <div class="chip">⛳ Golf</div>
-            <div class="chip">✈️ Traveling</div>
-            <div class="chip">🍳 Cooking</div>
-            <div class="chip">👨‍👩‍👧‍👦 Family</div>
-          </div>
-        </div>
-
       </div>
-    </div>
+
+      <!-- Extracurriculars -->
+      <div class="card">
+        <div class="card-title">Extracurriculars</div>
+
+        <div class="job">
+          <div class="job-head">
+            <div class="job-title"><span class="job-company">KAIST IMMS Tennis Club</span> — President</div>
+            <div class="job-date">Sep 2024 – Present</div>
+          </div>
+        </div>
+
+        <div class="job">
+          <div class="job-head">
+            <div class="job-title"><span class="job-company">EYFC Football Club</span> — Member</div>
+            <div class="job-date">Aug 2023 – Present</div>
+          </div>
+        </div>
+
+        <div class="job">
+          <div class="job-head">
+            <div class="job-title"><span class="job-company">EY Pang Tennis Club</span> — Member</div>
+            <div class="job-date">Sep 2022 – Present</div>
+          </div>
+        </div>
+
+        <div class="job">
+          <div class="job-head">
+            <div class="job-title"><span class="job-company">Seoul National University Women's Basketball Team</span> — Captain</div>
+            <div class="job-date">Jan 2019 – Dec 2019</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interests -->
+      <div class="card">
+        <div class="card-title">Interests</div>
+        <div class="chips">
+          <div class="chip">🏀 Basketball</div>
+          <div class="chip">⚽ Football (Soccer)</div>
+          <div class="chip">🏐 Volleyball</div>
+          <div class="chip">🎾 Tennis</div>
+          <div class="chip">🍜 Food</div>
+          <div class="chip">🏊 Swimming</div>
+          <div class="chip">🤿 Diving</div>
+          <div class="chip">⛳ Golf</div>
+          <div class="chip">✈️ Traveling</div>
+          <div class="chip">🍳 Cooking</div>
+          <div class="chip">👨‍👩‍👧‍👦 Family</div>
+        </div>
+      </div>
+
+    </main>
   </div>
+</div>
+
 </body>
 </html>
